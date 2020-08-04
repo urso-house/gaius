@@ -1,5 +1,4 @@
 module.exports = function(grunt) {
-  
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-pug');
   grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -8,9 +7,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-stylus');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
   grunt.initConfig({
-    
     pkg: grunt.file.readJSON('package.json'),
     clean: {
       dist: ['dist']
@@ -41,7 +40,7 @@ module.exports = function(grunt) {
     pug: {
       init: {
         options: {
-          pretty: true,
+          pretty: false,
           client: false,
           data: function(dest, src) {
             return {
@@ -134,12 +133,22 @@ module.exports = function(grunt) {
           livereload: true
         }
       }
-    }
+    },
+    copy: {
+      main: {
+        files: [{
+          expand: true,
+          cwd: 'dist/',
+          src: ['**/*'],
+          dest: 'docs'
+        }]
+      },
+    },
   });
 
   grunt.event.on('watch', function(action, filepath, target) {
     grunt.log.writeln(target + ': ' + filepath + ' was ' + action);
   });
   grunt.registerTask('default', ['clean:dist', 'pug', 'stylus', 'imagemin', 'concat', 'uglify', 'connect:server', 'watch']);
-  grunt.registerTask('build', ['clean:dist', 'pug', 'stylus', 'imagemin', 'concat']);
+  grunt.registerTask('build', ['clean:dist', 'pug', 'stylus', 'imagemin', 'concat', 'copy']);
 };
