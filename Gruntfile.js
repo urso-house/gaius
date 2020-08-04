@@ -150,5 +150,6 @@ module.exports = function(grunt) {
     grunt.log.writeln(target + ': ' + filepath + ' was ' + action);
   });
   grunt.registerTask('default', ['clean:dist', 'pug', 'stylus', 'imagemin', 'concat', 'uglify', 'connect:server', 'watch']);
-  grunt.registerTask('build', ['clean:dist', 'pug', 'stylus', 'imagemin', 'concat', 'copy']);
+grunt.registerTask('build', ['clean:dist', 'pug', 'stylus', 'imagemin', 'concat', 'uglify', 'copy']);
+
 };
