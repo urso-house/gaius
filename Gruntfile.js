@@ -6,7 +6,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-contrib-stylus');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
 
@@ -70,17 +69,10 @@ module.exports = function(grunt) {
         ext: '.css',
         options: {
           import: [__dirname + '/src/stylus/includes/*'],
+          use: [
+            function () { return require('autoprefixer-stylus')('last 2 versions', 'ie 8'); }
+          ]
         }
-      }
-    },
-    autoprefixer: {
-      css: {
-          options: {
-            browsers: ['> 0.01%'],
-            cascade: false
-          },
-          src: './dist/**/*.css',
-          expand: true
       }
     },
     imagemin: {
