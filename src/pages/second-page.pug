@@ -1,0 +1,18 @@
+extends ../layouts/main.pug
+block vars
+  - page.title = 'Home';
+
+block content
+  .row
+    .col-12
+      h1.page__title Yes, you are in the second page.
+      .content
+        p I will generate just <span class="badge badge-primary">html</span>, <span class="badge badge-success">css</span> and <span class="badge badge-info">javacript</span> files.
+        p Of course, there is <span class="badge badge-secondary">Markdown</span> support too.
+        :markdown-it(linkify langPrefix='highlight-')
+          ```js
+          const expressions = ['LOL', 'GG', 'WTF', 'OMG'];
+          console.log(expressions);
+          ```
+        p
+          a(href='/') Go back to the home page

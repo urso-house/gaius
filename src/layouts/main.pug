@@ -1,0 +1,11 @@
+doctype html
+html
+  include partials/logic.pug
+  block vars
+  include partials/head.pug
+  body
+      .container.page
+        include partials/header.pug
+        .content
+          block content
+        include partials/footer.pug

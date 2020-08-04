@@ -1,0 +1,24 @@
+extends ../../layouts/main.pug
+block vars
+  - page.title = 'Home';
+block content
+  .row
+    .col-12
+      :markdown-it(linkify langPrefix='highlight-')
+        # Post Title
+        ## Subtitle
+        That is my post content
+
+        ```js
+        try {
+          if (cls.search(/\bno\-highlight\b/) != -1)
+            return process(block, true, 0x0F) +
+                  ` class="${cls}"`;
+        } catch (e) {
+          /* handle exception */
+        }
+        for (var i = 0 / 2; i < classes.length; i++) {
+          if (checkCondition(classes[i]) === undefined)
+            console.log('undefined');
+        }
+        ```
